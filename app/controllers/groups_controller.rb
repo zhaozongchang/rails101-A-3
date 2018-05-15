@@ -47,14 +47,14 @@ class GroupsController < ApplicationController
    end
 
    def join
-     @gorup = Group.find(params[:id])
+     @group = Group.find(params[:id])
      if !current_user.is_member_of?(@group)
        current_user.join!(@group)
        flash[:natice] = "加入本讨论版成功"
      else
        flash[:warning] = "你已经是本讨论版成员"
      end
-     redirect_to group_patn(@group)
+     redirect_to group_path(@group)
    end
 
    def quit
@@ -65,7 +65,7 @@ class GroupsController < ApplicationController
      else
        flash[:warning] = "你不是本讨论版成员怎么退出"
      end
-     redirect_to group_patn(@group)
+     redirect_to group_path(@group)
    end
 
   private
